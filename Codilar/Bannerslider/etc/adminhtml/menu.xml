@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Codilar
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Codilar.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.Codilar.com/license-agreement.html
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Codilar
+ * @package     Codilar_Bannerslider
+ * @copyright   Copyright (c) 2012 Codilar (http://www.Codilar.com/)
+ * @license     http://www.Codilar.com/license-agreement.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+
+        <add id="Codilar_Bannerslider::bannerslider" title="Codilar" module="Codilar_Bannerslider" sortOrder="55" resource="Codilar_Bannerslider::bannerslider"/>
+
+    	<!--<add id="Codilar_Bannerslider::bannerslider" title="Banner Slider" module="Codilar_Bannerslider" sortOrder="10" resource="Codilar_Bannerslider::bannerslider" parent="Magento_Backend::content"/>-->
+
+        <!-- Codilar_Bannerslider::bannerslider_bannerslider -->
+
+		<add id="Codilar_Bannerslider::bannerslider_sliders" title="Manage Sliders" module="Codilar_Bannerslider" sortOrder="10" parent="Codilar_Bannerslider::bannerslider" action="bannerslideradmin/slider" resource="Codilar_Bannerslider::bannerslider_sliders"/>
+
+        <add id="Codilar_Bannerslider::bannerslider_banners" title="Manage Banners" module="Codilar_Bannerslider" sortOrder="10" parent="Codilar_Bannerslider::bannerslider" action="bannerslideradmin/banner" resource="Codilar_Bannerslider::bannerslider_banners"/>
+
+        <!--<add id="Codilar_Bannerslider::bannerslider_coreslider" title="Preview Slider Styles" module="Codilar_Bannerslider" sortOrder="10" parent="Codilar_Bannerslider::bannerslider" action="bannerslideradmin/coreslider" resource="Codilar_Bannerslider::bannerslider_coreslider"/>-->
+
+        <!--&lt;!&ndash; Codilar_Bannerslider::bannerslider_reports &ndash;&gt;-->
+        <!--<add id="Codilar_Bannerslider::bannerslider_reports_perslider" title="Reports Per Slider" module="Codilar_Bannerslider" sortOrder="10" parent="Codilar_Bannerslider::bannerslider" action="bannerslideradmin/report" resource="Codilar_Bannerslider::bannerslider_reports_perslider"/>-->
+        <!--<add id="Codilar_Bannerslider::bannerslider_reports_allslider" title="Reports All Sliders" module="Codilar_Bannerslider" sortOrder="10" parent="Codilar_Bannerslider::bannerslider" action="bannerslideradmin/report/banner" resource="Codilar_Bannerslider::bannerslider_reports_allslider"/>-->
+        <!--&lt;!&ndash; End Codilar_Bannerslider::bannerslider_reports &ndash;&gt;-->
+
+        <!--<add id="Codilar_Bannerslider::settings" title="Settings" module="Codilar_Bannerslider" sortOrder="20" parent="Codilar_Bannerslider::bannerslider" action="adminhtml/system_config/edit/section/bannerslider" resource="Codilar_Bannerslider::settings"/>-->
+
+        <!--&lt;!&ndash; End Codilar_Bannerslider::bannerslider_bannerslider &ndash;&gt;-->
+    </menu>
+</config>

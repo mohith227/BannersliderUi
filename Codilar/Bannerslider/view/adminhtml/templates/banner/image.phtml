@@ -1,0 +1,12 @@
+<?php
+/**
+ * @var $block \Codilar\Bannerslider\Block\Adminhtml\Banner\Edit\ImageRenderer
+ */
+$imageExists = $block->isImageExists();
+?>
+<?php if($imageExists): ?>
+    <?php $imagePath = $block->getDesktopBannerImagePath(); ?>
+    <div class="codilar-banner">
+        <img src="<?= $imagePath; ?>" alt="Banner" width="100%" height="100%">
+    </div>
+<?php endif; ?>

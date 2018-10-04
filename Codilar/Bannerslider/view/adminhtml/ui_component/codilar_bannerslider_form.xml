@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+                <item name="provider" xsi:type="string">codilar_bannerslider_form.bannerslider_form_data_source</item>
+            <item name="deps" xsi:type="string">codilar_bannerslider_form.bannerslider_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Banner information</item>
+        <item name="layout" xsi:type="array">
+            <item name="type" xsi:type="string">tabs</item>
+        </item>
+
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">Codilar\Bannerslider\Block\Adminhtml\Banner\Edit\BackButton</item>
+            <item name="delete" xsi:type="string">Codilar\Bannerslider\Block\Adminhtml\Banner\Edit\DeleteButton</item>
+            <item name="reset" xsi:type="string">Codilar\Bannerslider\Block\Adminhtml\Banner\Edit\ResetButton</item>
+            <item name="save_and_continue" xsi:type="string">Codilar\Bannerslider\Block\Adminhtml\Banner\Edit\SaveAndContinueButton</item>
+            <item name="save" xsi:type="string">Codilar\Bannerslider\Block\Adminhtml\Banner\Edit\SaveButton</item>
+        </item>
+    </argument>
+
+    <dataSource name="bannerslider_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Codilar\Bannerslider\Model\Banner\DataProvider</argument>
+            <argument name="name" xsi:type="string">bannerslider_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">banner_id</argument>
+            <argument name="requestFieldName" xsi:type="string">banner_id</argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="bannerslideradmin/banner/save"/>
+        </settings>
+    </dataSource>
+
+    <fieldset name="banner">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Banner information</item>
+            </item>
+        </argument>
+
+        <!-- This field represents form id and is hidden -->
+        <field name="banner_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">banner</item>
+                </item>
+            </argument>
+        </field>
+
+        <!-- This field has data type 'text' and standard 'input' form element and looks like input -->
+
+        <field name="name" sortOrder="200" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">name</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <dataScope>name</dataScope>
+            </settings>
+        </field>
+
+
+        <field name="virtual_store">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Codilar\Bannerslider\Model\Config\Source\Options</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Virtual Store</item>
+                    <item name="component" xsi:type="string">Codilar_Bannerslider/js/form/element/options</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">item</item>
+                    <item name="dataScope" xsi:type="string">virtual_store</item>
+                    <item name="sortOrder" xsi:type="number">210</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="status" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">homeslider</item>
+                </item>
+                <item name="sortOrder" xsi:type="number">220</item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Status</label>
+                <dataScope>status</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Config\Model\Config\Source\Enabledisable"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="device">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Codilar\Bannerslider\Model\Config\Source\Device</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Device</item>
+                    <item name="component" xsi:type="string">Codilar_Bannerslider/js/form/element/options</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">item</item>
+                    <item name="dataScope" xsi:type="string">device</item>
+                    <item name="sortOrder" xsi:type="number">230</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+
+
+        <field name="type">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Codilar\Bannerslider\Model\Config\Source\Type</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Type</item>
+                    <item name="component" xsi:type="string">Codilar_Bannerslider/js/form/element/type</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">item</item>
+                    <item name="dataScope" xsi:type="string">type</item>
+                    <item name="sortOrder" xsi:type="number">240</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="product_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Product Id</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">item</item>
+                    <item name="sortOrder" xsi:type="number">250</item>
+                    <item name="breakLine" xsi:type="boolean">true</item>
+                    <item name="visibleValue" xsi:type="string">2</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+        </field>
+        <field name="category">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Category</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">item</item>
+                    <item name="sortOrder" xsi:type="number">260</item>
+                    <item name="breakLine" xsi:type="boolean">true</item>
+                    <item name="visibleValue" xsi:type="string">0</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="slider_id">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Codilar\Bannerslider\Model\Config\Source\Slider</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Slider</item>
+                    <!--<item name="component" xsi:type="string">Codilar_Bannerslider/js/slider-edit-form</item>-->
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">item</item>
+                    <item name="dataScope" xsi:type="string">slider_id</item>
+                    <item name="sortOrder" xsi:type="number">270</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="image_alt">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Alt text</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">banner</item>
+                    <item name="sortOrder" xsi:type="number">280</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="click_url">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">URL</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">banner</item>
+                    <item name="sortOrder" xsi:type="number">290</item>
+                    <item name="required-entry" xsi:type="boolean">true</item>
+
+                </item>
+            </argument>
+        </field>
+
+        <!--<field name="image" formElement="fileUploader">-->
+            <!--<settings>-->
+                <!--<notice translate="true">Allowed file types: jpeg, gif, png , jpg.</notice>-->
+                <!--<label translate="true">BannerImage</label>-->
+                <!--<componentType>fileUploader</componentType>-->
+            <!--</settings>-->
+            <!--<formElements>-->
+                <!--<fileUploader>-->
+                    <!--<settings>-->
+                        <!--<allowedExtensions>jpg jpeg gif png </allowedExtensions>-->
+                        <!--<uploaderConfig>-->
+                            <!--<param xsi:type="string" name="url">bannerslideradmin/banner/upload</param>-->
+                        <!--</uploaderConfig>-->
+                    <!--</settings>-->
+                <!--</fileUploader>-->
+            <!--</formElements>-->
+        <!--</field>-->
+        <!--<field name="image">-->
+            <!--<argument name="data" xsi:type="array">-->
+                <!--<item name="config" xsi:type="array">-->
+                    <!--<item name="dataType" xsi:type="string">file</item>-->
+                    <!--<item name="label" xsi:type="string" translate="true">Image</item>-->
+                    <!--<item name="formElement" xsi:type="string">image</item>-->
+                    <!--<item name="sortOrder" xsi:type="number">300</item>-->
+                    <!--<item name="dataScope" xsi:type="string">imageUploader</item>-->
+                    <!--<item name="source" xsi:type="string">banner</item>-->
+                    <!--<item name="validation" xsi:type="array">-->
+                        <!--<item name="required-entry" xsi:type="boolean">false</item>-->
+                    <!--</item>-->
+                    <!--<item name="uploaderConfig" xsi:type="array">-->
+                        <!--<item name="url" xsi:type="url" path="bannerslideradmin/banner/upload"/>-->
+                    <!--</item>-->
+                <!--</item>-->
+            <!--</argument>-->
+        <!--</field>-->
+        <!--<htmlContent name="image_html">-->
+            <!--<argument name="block" xsi:type="object">Codilar\Bannerslider\Block\Adminhtml\Banner\Edit\ImageRenderer</argument>-->
+        <!--</htmlContent>-->
+        <field name="image">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="source" xsi:type="string">image</item>
+                    <item name="label" xsi:type="string" translate="true">Image</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">fileUploader</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="url" path="bannerslideradmin/banner/upload/field/image"/>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="start_time">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="label" xsi:type="string" translate="true">Start Time</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="source" xsi:type="string">page</item>
+                    <item name="sortOrder" xsi:type="number">310</item>
+                    <item name="dataScope" xsi:type="string">start_time</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">false</item>
+                    </item>
+                    <item name="options" xsi:type="array">
+                        <item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
+                        <item name="timeFormat" xsi:type="string">HH:mm:ss</item>
+                        <item name="showsTime" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="end_time">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="label" xsi:type="string" translate="true">End Time</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="source" xsi:type="string">page</item>
+                    <item name="sortOrder" xsi:type="number">320</item>
+                    <item name="dataScope" xsi:type="string">end_time</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">false</item>
+                    </item>
+                    <item name="options" xsi:type="array">
+                        <item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
+                        <item name="timeFormat" xsi:type="string">HH:mm:ss</item>
+                        <item name="showsTime" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="target">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Codilar\Bannerslider\Model\Config\Source\Target</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Target</item>
+                    <item name="component" xsi:type="string">Codilar_Bannerslider/js/form/element/options</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">item</item>
+                    <item name="dataScope" xsi:type="string">target</item>
+                    <item name="sortOrder" xsi:type="number">330</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>

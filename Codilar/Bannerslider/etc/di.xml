@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="banner_grid_listing_data_source" xsi:type="string">Codilar\Bannerslider\Model\ResourceModel\Banner\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="slider_grid_listing_data_source" xsi:type="string">Codilar\Bannerslider\Model\ResourceModel\Slider\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="report_grid_listing_data_source" xsi:type="string">Codilar\Bannerslider\Model\ResourceModel\Report\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Codilar\Bannerslider\Model\ResourceModel\Banner\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">Codilar_bannerslider_banner</argument>
+            <argument name="eventPrefix" xsi:type="string">banner_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">banner_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Codilar\Bannerslider\Model\ResourceModel\Banner</argument>
+        </arguments>
+    </type>
+    <type name="Codilar\Bannerslider\Model\ResourceModel\Slider\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">Codilar_bannerslider_slider</argument>
+            <argument name="eventPrefix" xsi:type="string">slider_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">slider_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Codilar\Bannerslider\Model\ResourceModel\Slider</argument>
+        </arguments>
+    </type>
+    <type name="Codilar\Bannerslider\Model\ResourceModel\Report\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">Codilar_bannerslider_report</argument>
+            <argument name="eventPrefix" xsi:type="string">report_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">report_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Codilar\Bannerslider\Model\ResourceModel\Report</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="BannerGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SliderGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ReportGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+    <virtualType name="BannerGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Codilar\Bannerslider\Model\ResourceModel\Banner\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">BannerGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SliderGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Codilar\Bannerslider\Model\ResourceModel\Slider\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">SliderGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ReportGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Codilar\Bannerslider\Model\ResourceModel\Report\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">ReportGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="ModuleImageUploader" type="Magento\Catalog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">module/tmp</argument>
+            <argument name="basePath" xsi:type="string">module</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Codilar\Bannerslider\Controller\Adminhtml\Banner\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">ModuleImageUploader</argument>
+        </arguments>
+    </type>
+
+
+
+</config>
